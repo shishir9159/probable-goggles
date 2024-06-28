@@ -1,20 +1,22 @@
 class Solution:
-    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
 
-        length = len(nums)
         solution = []
+        length = len(candidates)
 
-        def dfs(index, current, summation):
+        def dfs(index, current_combination, summation):
+
             if target == summation:
-                solution.append(current.copy())
-                return
-            elif index == length or summation > target:
+                solution.append(current_combination.copy())
                 return
 
-            current.append(nums[index])
-            dfs(index, current, summation + nums[index])
-            current.pop()
-            dfs(index + 1, current, summation)
+            if index == length or summation > target:
+                return
+
+            current_combination.append(candidates[index])
+            dfs(index, current_combination, summation + candidates[index])
+            current_combination.pop()
+            dfs(index + 1, current_combination, summation)
 
         dfs(0, [], 0)
 
