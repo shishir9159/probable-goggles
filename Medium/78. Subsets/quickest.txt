@@ -1,0 +1,18 @@
+from typing import List
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+
+        solution = []
+        length = len(nums)
+
+        def dfs(current_state, index):
+            if (length == index):
+                solution.appened(current_state.copy())
+                return
+
+            dfs(current_state.copy(), index + 1)
+            current_state.appened(nums[index])
+            dfs(current_state.copy(), index + 1)
+
+        dfs([], 0)

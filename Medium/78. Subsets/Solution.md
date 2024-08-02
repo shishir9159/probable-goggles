@@ -12,6 +12,28 @@ def dfs(index, permutation):
     if index == length:
     solution.append(permutation.copy())
 ```
+
+Performance testing:
+```
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+
+        solution = []
+        length = len(nums)
+
+        def dfs(current_state, index):
+            if (length == index):
+                solution.append(current_state.copy())
+                return
+
+            dfs(current_state.copy(), index + 1)
+            current_state.append(nums[index])
+            dfs(current_state.copy(), index + 1)
+
+        dfs([], 0)
+        return solution
+```
+
 https://www.youtube.com/watch?v=riO8Rgunc0o
 https://www.youtube.com/watch?v=IxQHWt0GpsU
 https://www.youtube.com/watch?v=bsyjSW46TDg
